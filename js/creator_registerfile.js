@@ -1,5 +1,5 @@
 /*
- *  Copyright 2018-2021 Felix Garcia Carballeira, Diego Camarmas Alonso, Alejandro Calderon Mateos
+ *  Copyright 2018-2022 Felix Garcia Carballeira, Diego Camarmas Alonso, Alejandro Calderon Mateos
  *
  *  This file is part of CREATOR.
  *
@@ -169,7 +169,7 @@ function writeRegister ( value, indexComp, indexElem )
 			if ((architecture.components[indexComp].elements[indexElem].properties.includes('pointer') != false) &&
 					(architecture.components[indexComp].elements[indexElem].properties.includes('stack') != false)   &&
 					(value != architecture.memory_layout[4].value)) {
-						writeStackLimit(value);
+						writeStackLimit(parseInt(bi_intToBigInt(value,10)));
 			}
 
 			if (typeof window !== "undefined") {
@@ -195,7 +195,7 @@ function writeRegister ( value, indexComp, indexElem )
 			if ((architecture.components[indexComp].elements[indexElem].properties.includes('pointer') != false) &&
 					(architecture.components[indexComp].elements[indexElem].properties.includes('stack') != false)   &&
 					(value != architecture.memory_layout[4].value)) {
-						writeStackLimit(value);
+						writeStackLimit(parseFloat(value));
 			}
 
 			updateDouble(indexComp, indexElem);

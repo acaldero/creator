@@ -1,5 +1,5 @@
 /*
- *  Copyright 2018-2021 Felix Garcia Carballeira, Diego Camarmas Alonso, Alejandro Calderon Mateos
+ *  Copyright 2018-2022 Felix Garcia Carballeira, Diego Camarmas Alonso, Alejandro Calderon Mateos
  *
  *  This file is part of CREATOR.
  *
@@ -31,7 +31,7 @@
   data:       function () {
                 return {
                   //Register value representation
-                  reg_representation: "signed",
+                  reg_representation: "hex",
                   reg_representation_options: [
                     { text: 'Signed', value: 'signed' },
                     { text: 'Unsigned', value: 'unsigned' },
@@ -40,7 +40,7 @@
                   ],
 
                   //Register name representation
-                  reg_name_representation: "logical",
+                  reg_name_representation: "all",
                   reg_name_representation_options: [
                     { text: 'Name', value: 'logical' },
                     { text: 'Alias', value: 'alias' },
