@@ -49,10 +49,8 @@
               filter ( row, filter )
               {
                 var addr = parseInt(row.addr_begin);
-                // check if kernel to compute offset
-                let mem_offset = architecture.memory_layout.length == 10 ? 4 : 0;
 
-                if ((this.memory_segment == "kinstructions_memory") && ((addr >= parseInt(architecture.memory_layout[0].value)) && (addr <= parseInt(architecture.memory_layout[1].value)))) {
+                if ((this.memory_segment == "instructions_memory") && ((addr >= parseInt(architecture.memory_layout[0].value)) && (addr <= parseInt(architecture.memory_layout[1].value)))) {
                   if(row.hide === true){
                     return false;
                   }
@@ -61,24 +59,11 @@
                   }
                 }
 
-                if ((this.memory_segment == "kdata_memory") && ((addr >= parseInt(architecture.memory_layout[2].value)) && (addr <= parseInt(architecture.memory_layout[3].value)))) {
+                if ((this.memory_segment == "data_memory") && ((addr >= parseInt(architecture.memory_layout[2].value)) && (addr <= parseInt(architecture.memory_layout[3].value)))) {
                   return true;
                 }
 
-                if ((this.memory_segment == "instructions_memory") && ((addr >= parseInt(architecture.memory_layout[mem_offset + 0].value)) && (addr <= parseInt(architecture.memory_layout[mem_offset + 1].value)))) {
-                  if(row.hide === true){
-                    return false;
-                  }
-                  else{
-                    return true;
-                  }
-                }
-
-                if ((this.memory_segment == "data_memory") && ((addr >= parseInt(architecture.memory_layout[mem_offset + 2].value)) && (addr <= parseInt(architecture.memory_layout[mem_offset + 3].value)))) {
-                  return true;
-                }
-
-                if ((this.memory_segment == "stack_memory") && ((addr > parseInt(architecture.memory_layout[mem_offset + 3].value)))) {
+                if ((this.memory_segment == "stack_memory") && ((addr >= parseInt(architecture.memory_layout[3].value)))) {
                   return (Math.abs(addr - app._data.end_callee) < (this._props.stack_total_list * 4));
                 }
               },
@@ -110,7 +95,7 @@
 
               change_space_view()
               {
-                 creator_memory_update_space_view(this.selected_space_view, memory_hash[3], this.row_info) ;
+                 creator_memory_update_space_view(this.selected_space_view, memory_hash[0], this.row_info) ;
               },
 
               hide_space_modal()
@@ -120,7 +105,7 @@
 
               change_stack_view()
               {
-                  creator_memory_update_row_view(this.selected_stack_view, memory_hash[4], this.row_info) ;
+                  creator_memory_update_row_view(this.selected_stack_view, memory_hash[2], this.row_info) ;
               },
 
               hide_stack_modal()
@@ -141,10 +126,8 @@
 
               get_classes ( row )
               {
-                // check if kernel to compute offset
-                let mem_offset = architecture.memory_layout.length == 10 ? 4 : 0;
                 return {
-                         'h6Sm                ':  ((row.item.addr >= parseInt(architecture.memory_layout[mem_offset + 0].value)) && (row.item.addr <= (architecture.memory_layout[mem_offset + 3].value))),
+                         'h6Sm                ':  ((row.item.addr >= parseInt(architecture.memory_layout[0].value)) && (row.item.addr <= (architecture.memory_layout[3].value))),
                          'h6Sm text-secondary ':  ((row.item.addr < app._data.end_callee)                           && (Math.abs(row.item.addr - app._data.end_callee) < (this._props.stack_total_list * 4))),
                          'h6Sm text-success   ':  ((row.item.addr < app._data.begin_callee)                         && (row.item.addr >= app._data.end_callee)),
                          'h6Sm text-blue-funny':  ((row.item.addr < app._data.begin_caller)                         && (row.item.addr >= app._data.end_caller)),
@@ -196,7 +179,7 @@
             '               <b-badge variant="info" ' +
             '                        class="border border-info shadow memoryTag" ' +
             '                        v-if="item2.properties.includes(\'global_pointer\') && ((parseInt(item2.value) & 0xFFFFFFFC) == (row.item.addr & 0xFFFFFFFC))">' +
-            '                 {{item2.name[0]}}' +
+            '                 {{item2.name.join(" | ")}}' +
             '               </b-badge>' +
             '               <span class="fas fa-long-arrow-alt-right" ' +
             '                     v-if="item2.properties.includes(\'global_pointer\') && ((parseInt(item2.value) & 0xFFFFFFFC) == (row.item.addr & 0xFFFFFFFC))">' +
@@ -204,7 +187,7 @@
             '               <b-badge variant="success" ' +
             '                        class="border border-success shadow memoryTag" ' +
             '                        v-if="item2.properties.includes(\'program_counter\') && ((parseInt(item2.value) & 0xFFFFFFFC) == (row.item.addr & 0xFFFFFFFC))">' +
-            '                 {{item2.name[0]}}' +
+            '                 {{item2.name.join(" | ")}}' +
             '               </b-badge>' +
             '               <span class="fas fa-long-arrow-alt-right" ' +
             '                     v-if="item2.properties.includes(\'program_counter\') && ((parseInt(item2.value) & 0xFFFFFFFC) == (row.item.addr & 0xFFFFFFFC))">' +
@@ -212,7 +195,7 @@
             '               <b-badge variant="info" ' +
             '                        class="border border-info shadow memoryTag" ' +
             '                     v-if="(item2.properties.includes(\'stack_pointer\') || item2.properties.includes(\'frame_pointer\')) && ((parseInt(item2.value) & 0xFFFFFFFC) == (row.item.addr & 0xFFFFFFFC))">' +
-            '                 {{item2.name[0]}}' +
+            '                 {{item2.name.join(" | ")}}' +
             '               </b-badge>' +
             '               <span class="fas fa-long-arrow-alt-right" ' +
             '                 v-if="(item2.properties.includes(\'stack_pointer\') || item2.properties.includes(\'frame_pointer\') ) && ((parseInt(item2.value) & 0xFFFFFFFC) == (row.item.addr & 0xFFFFFFFC))">' +

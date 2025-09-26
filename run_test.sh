@@ -276,4 +276,3 @@ if [[ -n "$error" ]]; then
     echo "Error(s) found."
     exit -1
 fi
-
