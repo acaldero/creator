@@ -6262,7 +6262,7 @@
           "valueField": "101"
         }
       ],
-      "definition": "rd = rs1 >> rs2;",
+      "definition": "rd = rs1 >>> rs2;",
       "separated": [
         false,
         false,
@@ -6323,7 +6323,7 @@
           "valueField": "000000"
         }
       ],
-      "definition": "if (shamt > 0) {rd = (rs1 >> shamt);}",
+      "definition": "if (shamt > 0) {rd = (rs1 >>> shamt);}",
       "separated": [
         false,
         false,
