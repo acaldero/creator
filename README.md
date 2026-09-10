@@ -39,9 +39,10 @@
   
   |                              | URL                                             |
   |:----------------------------:|:-----------------------------------------------:|
-  | :clipboard:Source Code       | https://github.com/creatorsim/creator           |
+  | :clipboard: Source Code      | https://github.com/creatorsim/creator           |
   | :hammer: Assembler           | https://github.com/creatorsim/creator-assembler |
   | :microscope: Nightly Build   | https://github.com/creatorsim/creator-beta      |
+  | :memo: Checker               | https://github.com/creatorsim/creator-checker   |
   
   <h3 align="center">Supported Internet Browsers</h3>
   
@@ -159,6 +160,14 @@
     keywords = {RISC-V, Sail, Web simulator, Extensible simulator, Instruction set architecture},
   }
   ```
+</details>
+
+<details>
+<summary>:newspaper: CREATOR: A RISC-V web simulator based on Sail specification language</summary>
+
+  * Conference poster: RISC-V Summit Europe
+  * Authors: Juan Carlos Cano-Resa, Félix García-Carballeira, Diego Camarmas-Alonso, Alejandro Calderón-Mateos
+  * [:link: Open publication](https://doi.org/10.13140/RG.2.2.12039.36002)
 </details>
 
 <details>
@@ -583,7 +592,7 @@
   <h2 align="center">Developing CREATOR</h2>
 </div>
 
-See [`docs/dev.md`](https://github.com/creatorsim/creator/blob/master/docs/dev.md).
+See [`CREATOR Wiki - Development Guide`](https://creatorsim.github.io/creator-wiki/development/setup.html).
 
 
 
